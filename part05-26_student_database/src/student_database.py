@@ -6,6 +6,15 @@ def add_student(students : dict, student : str):
 
   
 def add_course(students : dict, student : str, course : tuple):
+    if course[1] == 0:
+        return
+    for i, c in enumerate(students[student]["courses"]):
+        if course[0] == c[0]:
+            if c[1] < course[1]:
+                students[student]["courses"][i] = course
+            
+            return
+
     students[student]["courses"].append(course)
     
 
@@ -35,19 +44,10 @@ def print_student(students : dict, student : str):
     
 if __name__ == "__main__":
     students = {}
+    students = {}
     add_student(students, "Peter")
-    add_student(students, "Emily")
+    add_course(students, "Peter", ("Software Development Methods", 1))
+    add_course(students, "Peter", ("Software Development Methods", 5))
     print_student(students, "Peter")
-    print_student(students, "Emily")
-    print_student(students, "Andy")
-    # students = {}
-    # add_student(students, "Peter")
-    # add_student(students, "Eliza")
-    # print_student(students, "Eliza")
-    # print_student(students, "Jack")
-    # add_student(students, "Peter")
-    # add_course(students, "Peter", ("Introduction to Programming", 3))
-    # add_course(students, "Peter", ("Advanced Course in Programming", 2))
-
-    # print_student(students, "Peter")
+    
     
