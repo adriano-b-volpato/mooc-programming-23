@@ -40,14 +40,57 @@ def print_student(students : dict, student : str):
     print(f" average grade {avg} ")
     
     
+    
+def summary(students: dict):
+    most_courses_completed = []
+    best_avg = []
+    for student in students:
+        courses_completed = len(students[student]["courses"])
+        avg = 0
+        if not most_courses_completed: 
+            most_courses_completed.append(courses_completed)
+            most_courses_completed.append(students[student]["name"])
+        if courses_completed > most_courses_completed[0]:
+            most_courses_completed = []
+            most_courses_completed.append(courses_completed)
+            most_courses_completed.append(students[student]["name"])
+        for courses in students[student]["courses"]:
+            avg += courses[1]
+        avg = avg/courses_completed
+        if not best_avg:
+            best_avg.append(avg)
+            best_avg.append(students[student]["name"])
+        
+        if avg > best_avg[0]:
+            best_avg = []
+            best_avg.append(avg)
+            best_avg.append(students[student]["name"])
+    print(f"students {len(students)}")
+    print(f"most courses completed {most_courses_completed[0]} {most_courses_completed[1]}")
+    print(f"best average grade {best_avg[0]} {best_avg[1]}")
+    
+            
+
+        
+            
+
+
+            
+    
+            
+    
+    
 
     
 if __name__ == "__main__":
     students = {}
-    students = {}
     add_student(students, "Peter")
-    add_course(students, "Peter", ("Software Development Methods", 1))
-    add_course(students, "Peter", ("Software Development Methods", 5))
-    print_student(students, "Peter")
+    add_student(students, "Eliza")
+    add_course(students, "Peter", ("Data Structures and Algorithms", 1))
+    add_course(students, "Peter", ("Introduction to Programming", 1))
+    add_course(students, "Peter", ("Advanced Course in Programming", 1))
+    add_course(students, "Eliza", ("Introduction to Programming", 5))
+    add_course(students, "Eliza", ("Introduction to Computer Science", 4))
+    summary(students)
     
     
